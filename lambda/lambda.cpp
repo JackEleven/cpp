@@ -14,10 +14,11 @@ int main(void) {
 	puts("Below is the lambda expression - \n");
 
 	//  [ capture clause ] (parameter) -> return-type {}
-	auto addition = [](int a, int b)->int {
-		return a + b; 
+	int capture_parameter = 10;
+	auto addition = [capture_parameter](int a, int b)->int {
+		return a + b + capture_parameter;
 	};
-	
+//
 	std::cout << addition(3, 5) << std::endl;
 
 	return EXIT_SUCCESS;
