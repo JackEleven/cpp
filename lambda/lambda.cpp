@@ -14,7 +14,7 @@ int main(void) {
 	puts("Below is the lambda expression - \n");
 
 	//  [ capture clause ] (parameter) -> return-type {}
-	auto addition = [](int a, int b)->int { 
+	auto addition = [](int a, int b)->int {
 		return a + b; 
 	};
 	
