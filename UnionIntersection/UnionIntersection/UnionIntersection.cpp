@@ -28,30 +28,23 @@ vector<int> Union(vector<int> a1, vector<int> a2) {
 	return result;
 }
 
-vector<int> Intersection(vector<int> v1, vector<int> v2) {
-	vector<int> result;
+vector<int> GetCommonElements(const vector<int> &small, const vector<int> &big) {
 	unordered_set<int> hset;
-	
-	// runtime is O(n1) + O(n2)
-	size_t n1 = v1.size(), n2 = v2.size();
-
-	// runtime is O(n1) + O(n2)
-	if (n1 < n2) {
-		InsertSet(v1, hset);
-		for (size_t i = 0; i < v2.size(); ++i) {
-			if (hset.find(v2[i]) != hset.end()) {
-				result.push_back(v2[i]);
-			}
-		}
-	} else {
-		InsertSet(v2, hset);
-		for (size_t i = 0; i < v1.size(); ++i) {
-			if (hset.find(v1[i]) != hset.end()) {
-				result.push_back(v1[i]);
-			}
+	vector<int> result;
+	InsertSet(small, hset);
+	for (size_t i = 0; i < big.size(); ++i) {
+		if (hset.find(big[i]) != hset.end()) {
+			result.push_back(big[i]);
 		}
 	}
 
+	return result;
+}
+
+vector<int> Intersection(vector<int> v1, vector<int> v2) {
+	vector<int> result;
+
+	result = v1.size() < v2.size() ? GetCommonElements(v1, v2) : GetCommonElements(v2, v1);
 	return result;
 }
 
